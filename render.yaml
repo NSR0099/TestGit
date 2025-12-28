@@ -1,0 +1,71 @@
+services:
+  # ----------------------------------------
+  # AI Service (Python)
+  # ----------------------------------------
+  - type: web
+    name: ai-service
+    env: python
+    rootDir: citizen_dashboard/ai-services
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PORT
+        value: 8080
+
+  # ----------------------------------------
+  # Admin Backend (Node)
+  # ----------------------------------------
+  - type: web
+    name: admin-backend
+    env: node
+    rootDir: backup_sentinel/sentinel-watch/backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: PORT
+        value: 3000
+
+  # ----------------------------------------
+  # Citizen Backend (Node)
+  # ----------------------------------------
+  - type: web
+    name: citizen-backend
+    env: node
+    rootDir: citizen_dashboard/citizen/backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 5000
+      - key: AI_SERVICE_URL
+        fromService:
+          type: web
+          name: ai-service
+          property: url
+
+  # ----------------------------------------
+  # Unified Frontend (Static)
+  # ----------------------------------------
+  - type: web
+    name: unified-frontend
+    env: static
+    rootDir: .
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: ADMIN_API_URL
+        fromService:
+          type: web
+          name: admin-backend
+          property: url
+      - key: CITIZEN_API_URL
+        fromService:
+          type: web
+          name: citizen-backend
+          property: url
