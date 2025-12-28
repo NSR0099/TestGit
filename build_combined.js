@@ -30,7 +30,7 @@ try {
         run('npm install', ADMIN_PATH);
     }
     run('npm run build -- --base=/admin/', ADMIN_PATH, {
-        VITE_API_BASE_URL: process.env.ADMIN_API_URL
+        VITE_API_BASE_URL: process.env.ADMIN_API_URL ? `https://${process.env.ADMIN_API_URL}/api` : undefined
     });
 
     // Move Admin build
@@ -47,7 +47,7 @@ try {
     // Citizen uses Vite, check base path
     // We pass --base via CLI to ensure assets load correctly from subdirectory
     run('npm run build -- --base=/citizen/', CITIZEN_PATH, {
-        VITE_API_BASE_URL: process.env.CITIZEN_API_URL
+        VITE_API_BASE_URL: process.env.CITIZEN_API_URL ? `https://${process.env.CITIZEN_API_URL}/api` : undefined
     });
 
     // Move Citizen build

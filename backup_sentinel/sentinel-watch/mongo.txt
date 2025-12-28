@@ -1,0 +1,1 @@
+mongodb+srv://SmartEmergency:innovex123@cluster0.p7wpdve.mongodb.net/SmartEmergency?retryWrites=true&w=majority&appName=Cluster0

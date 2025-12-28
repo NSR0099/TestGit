@@ -47,7 +47,7 @@ services:
         fromService:
           type: web
           name: ai-service
-          property: url
+          property: host
 
   # ----------------------------------------
   # Unified Frontend (Static)
@@ -63,9 +63,9 @@ services:
         fromService:
           type: web
           name: admin-backend
-          property: url
+          property: host
       - key: CITIZEN_API_URL
         fromService:
           type: web
           name: citizen-backend
-          property: url
+          property: host

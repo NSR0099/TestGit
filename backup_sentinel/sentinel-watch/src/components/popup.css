@@ -1,0 +1,109 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.popup-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  animation: popupIn 0.3s ease;
+}
+
+.popup-header {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header h3 {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.popup-close {
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--medium-gray);
+}
+
+.popup-content {
+  padding: 1.5rem;
+}
+
+/* Profile */
+.profile-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue),
+    var(--secondary-blue)
+  );
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info p {
+  font-size: 0.95rem;
+  color: var(--medium-gray);
+}
+
+/* Settings */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.setting-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.setting-desc {
+  font-size: 0.8rem;
+  color: var(--medium-gray);
+}
+
+/* Utilities */
+.full-width {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@keyframes popupIn {
+  from {
+    transform: translateY(20px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
